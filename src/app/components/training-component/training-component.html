@@ -1,0 +1,39 @@
+<div>
+    <ng-container *ngIf="listTrainings">
+        <table class="table table-striped table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let training of listTrainings">
+                    <td>{{ training.id }}</td>
+                    <td>{{ training.name }}</td>
+                    <td>{{ training.description }}</td>
+                    <td>{{ training.price | currency:'EUR' }}</td>
+                    <td>
+                        <input 
+                            type="number" 
+                            min="1" 
+                            class="form-control form-control-sm text-center" 
+                            style="width:80px" 
+                            [(ngModel)]="training.quantity"
+                        >
+                    </td>
+                    <td>
+                        <button class="btn btn-success btn-sm" (click)="onAddToCart(training)">
+                            Ajouter
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ng-container>
+</div>
