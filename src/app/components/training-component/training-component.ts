@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart-service';
 import { Router } from '@angular/router';
 
+interface TrainingWithQuantity extends Training {
+    quantity: number;
+}
+
 
 @Component({
     selector: 'app-training-component',
@@ -13,19 +17,21 @@ import { Router } from '@angular/router';
     styleUrl: './training-component.css',
 })
 export class TrainingComponent implements OnInit{
-    listTrainings : Training[] | undefined;
+    listTrainings : TrainingWithQuantity[] | undefined;
     constructor(private cartService : CartService, private router : Router) { }
     
     ngOnInit(): void {
-        this.listTrainings = [
-            {id:1, name:'Java',description:'Formation Java 8 pour 5 jours', price:1500, quantity:1},
-            {id:2, name:'DotNet',description:'Formation DotNet 3 jours', price:1000, quantity:1},
-            {id:3, name:'Python',description:'Formation Python/Django 5 jours', price:1500, quantity:1}
+        const listTrainings = [
+            {id:1, name:'Java',description:'Formation Java 8 pour 5 jours', price:1500 },
+            {id:2, name:'DotNet',description:'Formation DotNet 3 jours', price:1000},
+            {id:3, name:'Python',description:'Formation Python/Django 5 jours', price:1500}
         ];
-    }
 
-    onAddToCart(training:Training){
-        this.cartService.addTraining(training);
-        this.router.navigateByUrl('/cart');
+        // Add quantityt attriute
+        this.listTrainings = listTrainings.map(t => ({ ...t, quantity: 1 }));
+    }  
+
+    onAddToCart(training:TrainingWithQuantity){
+        this.cartService.addTraining(training, training.quantity);
     }
 }
