@@ -1,12 +1,35 @@
 <!-- Image and text -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="#">TRAININGS</a>
-    
-    <ul class="navbar-nav">
-        <li class="navbar-item">
-            <a routerLink="/trainings" class="nav-link">Formation</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <!-- Brand / Logo -->
+        <a class="navbar-brand" href="#">TRAININGS</a>
+
+        <!-- Links à esquerda -->
+        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+            <li class="nav-item">
+                <a routerLink="/trainings" class="nav-link">Formation</a>
+            </li>
+        </ul>
+
+            <!-- Shopping cart à direita -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a routerLink="/cart" class="nav-link position-relative">
+                    <!-- Cart icon (Bootstrap icon ou FontAwesome) -->
+                    <i class="bi bi-cart-fill"></i>
+                    
+                    <!-- Optional: badge with number of items -->
+                    <span 
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        *ngIf="cartService.getCart().length > 0">
+                        {{ cartService.getCart().length }}
+                        <span class="visually-hidden">items in cart</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
+
 <router-outlet></router-outlet>
 bottombar
