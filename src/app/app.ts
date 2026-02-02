@@ -7,9 +7,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  constructor(){}
+  constructor(public cartService : CartService){}
   protected readonly title = signal('trainings-front-app');
 }
