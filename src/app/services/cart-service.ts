@@ -44,10 +44,16 @@ export class CartService {
 
         //save to local storage also
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cart));
+
+        //update
+        const storedCart = localStorage.getItem(this.STORAGE_KEY);
+        if (storedCart) {
+            this.cart = JSON.parse(storedCart);
+        }
     }
 
     removeTraining(training:number | Number | Training){
-        //create var to stora
+        //create var to store
         let trainingId : number;
 
 
