@@ -9,13 +9,12 @@ import { Training } from '../models/training';
 export class ApiService {
     constructor(private http:HttpClient){}
 
-    
+
     getTrainings(){
         return this.http.get<Training[]>(environment.host+"/trainings")
     }
 
 
-    getTrainingById(id : number){ return this.getTraining(id) }
     getTraining(id : number){
         return this.http.get<Training[]>(environment.host+"/trainings/"+id)
     }
