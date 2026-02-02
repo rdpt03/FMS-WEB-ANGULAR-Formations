@@ -18,8 +18,11 @@ interface TrainingWithQuantity extends Training {
 })
 export class TrainingComponent implements OnInit{
     listTrainings : TrainingWithQuantity[] | undefined;
+    filteredTrainings : TrainingWithQuantity[] | undefined;
+    searchText : string = "";
     constructor(private cartService : CartService, private router : Router) { }
     
+
     ngOnInit(): void {
         const listTrainings = [
             {id:1, name:'Java',description:'Formation Java 8 pour 5 jours', price:1500 },
@@ -31,7 +34,13 @@ export class TrainingComponent implements OnInit{
         this.listTrainings = listTrainings.map(t => ({ ...t, quantity: 1 }));
     }  
 
+
     onAddToCart(training:TrainingWithQuantity){
         this.cartService.addTraining(training, training.quantity);
+    }
+
+
+    onSearchTextChange(value: string) {
+        console.log("searchText changed to:", value);
     }
 }
