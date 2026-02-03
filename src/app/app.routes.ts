@@ -34,33 +34,3 @@ export const routes: Routes = [
         component: PageNotFound
     }
 ];
-
-/*
-import { Routes } from '@angular/router';
-import { TrainingComponent } from './components/training-component/training-component';
-import { Home } from './components/home/home';
-import { RegisterFormComonent } from './components/register-form-component/register-form-component';
-import { PageNotFound } from './components/page-not-found/page-not-found';
-import { CartComponent } from './components/cart-component/cart-component';
-import { LoginFormComponent } from './components/login-form-component/login-form-component';
-import { MainLayout } from './components/main-layout/main-layout';
-
-export const routes: Routes = [
-  {
-    path: '',
-    component: MainLayout,
-    children: [
-      { path: '', component: Home, data: { noLayout: false } },
-      { path: 'trainings', component: TrainingComponent, data: { noLayout: false } },
-      { path: 'register', component: RegisterFormComonent, data: { noLayout: false } },
-      { path: 'cart', component: CartComponent, data: { noLayout: false } },
-    ],
-  },
-  {
-    path: 'login',
-    component: LoginFormComponent,
-    data: { noLayout: true } // flag que indica que não usa layout
-  },
-  { path: '**', component: PageNotFound, data: { noLayout: true } }
-];
-*/
