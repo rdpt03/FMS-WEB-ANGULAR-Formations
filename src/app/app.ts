@@ -4,12 +4,12 @@ import { CartService } from './services/cart-service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule],
-  templateUrl: './app.html',
-  styleUrls: ['./app.css']
+    selector: 'app-root',
+    imports: [CommonModule, RouterOutlet, RouterModule],
+    templateUrl: './app.html',
+    styleUrls: ['./app.css']
 })
 export class App {
-  constructor(public cartService : CartService){}
-  protected readonly title = signal('trainings-front-app');
+    constructor(public cartService : CartService){}
+    protected readonly title = signal('trainings-front-app');
 }
