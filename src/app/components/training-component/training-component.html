@@ -1,5 +1,5 @@
 <div>
-    <ng-container *ngIf="listTrainings">
+    <ng-container *ngIf="trainings$ | async as trainings; else loading">
         <!---Search bar-->
         <form class="d-flex align-items-center">
             <input 
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let training of listTrainings">
+                <tr *ngFor="let training of trainings">
                     <td>{{ training.id }}</td>
                     <td>{{ training.name }}</td>
                     <td>{{ training.description }}</td>
@@ -49,3 +49,7 @@
 
     </ng-container>
 </div>
+
+<ng-template #loading>
+    <p>Carregando...</p>
+</ng-template>
