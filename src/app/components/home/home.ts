@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -8,5 +8,5 @@ import { RouterModule } from '@angular/router';
     styleUrl: './home.css',
 })
 export class Home {
-
+    constructor(){}   
 }
