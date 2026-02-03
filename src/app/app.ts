@@ -30,5 +30,9 @@ export class App {
                 this.showLayout = !currentRoute?.snapshot.data?.['noLayout'];
         });
 
+        //get login status
+        if(!localStorage.getItem("login")){
+            this.router.navigate(['/login'])
+        }
     } 
 }
