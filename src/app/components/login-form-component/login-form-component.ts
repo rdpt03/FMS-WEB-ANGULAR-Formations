@@ -3,6 +3,7 @@
     import { User } from '../../models/user';
     import { CommonModule } from '@angular/common';
     import { ApiService } from '../../services/api-service';
+import { Router } from '@angular/router';
 
 
     @Component({
@@ -25,7 +26,7 @@
         //regex email 
         emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        constructor(private apiService : ApiService) { }
+        constructor(private apiService : ApiService, private router : Router) { }
         
         
 
@@ -60,8 +61,8 @@
 
                         //check if user is available or not
                         if(res.length > 0){
-                            localStorage.setItem("login",JSON.stringify(res[0]));
-                            localStorage.setItem("loginExpirationData","placeholder");
+                            localStorage.setItem("login",btoa(unescape(encodeURIComponent(JSON.stringify(res[0])))));
+                            this.router.navigate(['/trainings'])
                         }
                         else {
                             alert("Le compte n'existe pas");   
