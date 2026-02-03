@@ -1,39 +1,56 @@
 {
-    "trainings": [
-        {
-            "id" : 1,
-            "name" : "Java",
-            "description" : "Formation JAVA SE 8 sur 5 jours",
-            "price":1500,
-            "quantity": 1
-        },
-        {
-            "id" : 2,
-            "name" : "DOTNET",
-            "description" : "Formation DOTNET 3 jours",
-            "price":1000,
-            "quantity": 1
-        },
-        {
-            "id" : 3,
-            "name": "Python",
-            "description": "Fomration Python/Django 10 jours",
-            "price": 2000,
-            "quantity": 1
-        },
-        {
-            "id" : 4,
-            "name": "PHP",
-            "description": "Intiation au deb/Web avec PHP 4 jours",
-            "price": 1300,
-            "quantity": 1
-        },
-        {
-            "id" : 5,
-            "name": "NODE JS",
-            "description": "Prise en main de NODE JS/EXPRESS 2 jours",
-            "price": 1400,
-            "quantity": 1
-        }
-    ]
+  "trainings": [
+    {
+      "id": 1,
+      "name": "Java",
+      "description": "Formation JAVA SE 8 sur 5 jours",
+      "price": 1500,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "DOTNET",
+      "description": "Formation DOTNET 3 jours",
+      "price": 1000,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "Python",
+      "description": "Fomration Python/Django 10 jours",
+      "price": 2000,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "PHP",
+      "description": "Intiation au deb/Web avec PHP 4 jours",
+      "price": 1300,
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "name": "NODE JS",
+      "description": "Prise en main de NODE JS/EXPRESS 2 jours",
+      "price": 1400,
+      "quantity": 1
+    }
+  ],
+  "users": [
+    {
+      "email": "elbab@gmail.com",
+      "password": "1234",
+      "roles": "['ADMIN','USER']"
+    },
+    {
+      "email": "hugo@gmail.com",
+      "password": "1234",
+      "roles": "['USER']"
+    },
+    {
+      "id": "230f",
+      "email": "kopjoij@zdza.cc",
+      "password": "1234"
+    }
+  ]
 }
