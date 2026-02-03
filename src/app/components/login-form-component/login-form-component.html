@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <form class="p-4 rounded shadow bg-light" style="width: 100%; max-width: 400px;" #f="ngForm" (ngSubmit)="onLogin(f)">
+
+        <h3 class="text-center mb-4">Login</h3>
+
+        <!-- Error zone -->
+        <div *ngIf="loginError" class="alert alert-danger">
+            {{ loginErrorMessage }}
+        </div>
+        <div *ngIf="errorMessage.length > 0" class="mb-3">
+            <div *ngFor="let err of errorMessage" class="alert alert-danger py-2">
+                {{ err.message }}
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                class="form-control" 
+                [(ngModel)]="user.email" 
+                placeholder="Digite seu email">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required 
+                class="form-control" 
+                [(ngModel)]="user.password" 
+                placeholder="Digite sua senha">
+        </div>
+
+        <!-- Submit -->
+        <div class="d-grid">
+            <button type="button" class="btn btn-primary btn-block" (click)="onLogin(f)">Login</button>
+        </div>
+    </form>
+</div>

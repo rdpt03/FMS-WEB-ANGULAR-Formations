@@ -1,0 +1,77 @@
+    import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+    import { FormsModule, NgForm } from '@angular/forms';
+    import { User } from '../../models/user';
+    import { CommonModule } from '@angular/common';
+    import { ApiService } from '../../services/api-service';
+
+
+    @Component({
+        selector: 'app-login-form-component',
+        imports: [FormsModule, CommonModule],
+        templateUrl: './login-form-component.html',
+        styleUrls: ['./login-form-component.css'],
+    })
+
+
+    export class LoginFormComponent implements OnInit {
+        //ERROR ZONE
+        loginError: boolean = false;
+        loginErrorMessage: string = 'FODA SE PUTA QUE PARIU';
+        errorMessage : {code:string, message:string}[] = [];
+
+        //user
+        user: User = new User();
+        
+        //regex email 
+        emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        constructor(private apiService : ApiService) { }
+        
+        
+
+        ngOnInit(): void{}
+
+        
+        onLogin(f: NgForm) {
+            f.form.updateValueAndValidity();  // garante que ngModel está atualizado
+            f.form.markAllAsTouched();       // garante validação visual   
+            // Clear previous errors
+            this.errorMessage = [];
+
+            // 1️⃣ Email validation
+            if (!this.emailRegex.test(this.user.email)) {
+                alert("L'email n'est pas au bon format\nFormat : email@domain.com");
+                return ;
+            }
+
+            // 2️⃣ Password validation (optional, e.g., min length) 
+            if (!this.user.password || this.user.password.length < 4) {
+                alert("Le mot de passe est trop court");
+                return; 
+            }
+
+            // 3️⃣ If there are errors, stop here
+            if (this.errorMessage.length > 0) return;
+
+            // 4️⃣ Secure login via POST
+            this.apiService.checkUser(this.user.email, this.user.password)
+                .subscribe({
+                    next: (res : User[]) => {
+
+                        //check if user is available or not
+                        if(res.length > 0){
+                            localStorage.setItem("login",JSON.stringify(res[0]));
+                            localStorage.setItem("loginExpirationData","placeholder");
+                        }
+                        else {
+                            alert("Le compte n'existe pas");   
+                        }
+
+                        // Example: store token
+                        //localStorage.setItem('token', res.token);
+                        // Redirect if needed
+                        // this.router.navigate(['/dashboard']);
+                    },
+                });
+        }
+    }
