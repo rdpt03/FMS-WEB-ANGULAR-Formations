@@ -40,7 +40,7 @@ export class TrainingComponent implements OnInit{
 
 
     ngOnInit() {
-         this.trainings$ = this.apiService.getTrainings();
+        this.trainings$ = this.apiService.getTrainings();
     }
 
 
