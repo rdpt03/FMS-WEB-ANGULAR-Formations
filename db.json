@@ -40,12 +40,12 @@
         {
             "email": "elbab@gmail.com",
             "password": "1234",
-            "roles": "['ADMIN','USER']"
+            "role": ["ADMIN","USER"]
         },
         {
             "email": "hugo@gmail.com",
             "password": "1234",
-            "roles": "['USER']"
+            "role": ["USER"]
         }
     ]
 }
