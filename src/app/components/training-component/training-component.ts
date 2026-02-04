@@ -19,21 +19,28 @@ interface TrainingWithQuantity extends Training {
     styleUrl: './training-component.css',
 })
 export class TrainingComponent implements OnInit{
+    //training list
     listTrainings : TrainingWithQuantity[] | undefined;
+    //possible errors
     error : any = null;
+
+    //var to check if i m admin
+    adminConnected = true;
+
+    //search tool (not used)
     filteredTrainings : TrainingWithQuantity[] | undefined;
     searchText : string = "";
 
     trainings$!: Observable<Training[]>;
 
-    constructor(private apiService : ApiService, private cartService : CartService, private router : Router) { }
+    constructor(private apiService : ApiService, private cartService : CartService) { }
     
 
     
 
 
     ngOnInit() {
-         this.trainings$ = this.apiService.getTrainings(); // retorna Observable
+         this.trainings$ = this.apiService.getTrainings();
     }
 
 
