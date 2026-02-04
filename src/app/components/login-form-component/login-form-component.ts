@@ -3,7 +3,7 @@
     import { User } from '../../models/user';
     import { CommonModule } from '@angular/common';
     import { ApiService } from '../../services/api-service';
-import { Router } from '@angular/router';
+    import { Router } from '@angular/router';
 
 
     @Component({
@@ -15,10 +15,6 @@ import { Router } from '@angular/router';
 
 
     export class LoginFormComponent implements OnInit {
-        //ERROR ZONE
-        loginError: boolean = false;
-        loginErrorMessage: string = 'FODA SE PUTA QUE PARIU';
-        errorMessage : {code:string, message:string}[] = [];
 
         //user
         user: User = new User();
@@ -36,8 +32,6 @@ import { Router } from '@angular/router';
         onLogin(f: NgForm) {
             f.form.updateValueAndValidity();  // garante que ngModel está atualizado
             f.form.markAllAsTouched();       // garante validação visual   
-            // Clear previous errors
-            this.errorMessage = [];
 
             // 1️⃣ Email validation
             if (!this.emailRegex.test(this.user.email)) {
@@ -51,8 +45,6 @@ import { Router } from '@angular/router';
                 return; 
             }
 
-            // 3️⃣ If there are errors, stop here
-            if (this.errorMessage.length > 0) return;
 
             // 4️⃣ Secure login via POST
             this.apiService.checkUser(this.user.email, this.user.password)
@@ -67,11 +59,6 @@ import { Router } from '@angular/router';
                         else {
                             alert("Le compte n'existe pas");   
                         }
-
-                        // Example: store token
-                        //localStorage.setItem('token', res.token);
-                        // Redirect if needed
-                        // this.router.navigate(['/dashboard']);
                     },
                 });
         }
