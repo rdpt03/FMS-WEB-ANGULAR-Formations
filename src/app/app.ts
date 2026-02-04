@@ -37,6 +37,7 @@ export class App {
         }
     }
 
+    
     private isBrowser(): boolean {
         return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
     } 
