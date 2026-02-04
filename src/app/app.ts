@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } fro
 import { CartService } from './services/cart-service';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { LocalStorageService } from './services/local-storage-service';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,7 @@ import { filter } from 'rxjs/operators';
     styleUrls: ['./app.css']
 })
 export class App {
-    constructor(public cartService : CartService, private router: Router, private route: ActivatedRoute){}
+    constructor(public cartService : CartService, private router: Router, private route: ActivatedRoute, private localStorageService : LocalStorageService){}
     protected readonly title = signal('trainings-front-app');
  
     showLayout = true;
@@ -31,7 +32,7 @@ export class App {
         });
 
         //get login status
-        if(!localStorage.getItem("login")){
+        if(!this.localStorageService.getUserFromLocalStorage()){
             this.router.navigate(['/login'])
         }
     } 
