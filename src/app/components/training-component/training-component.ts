@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Training } from '../../models/training';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart-service';
-import { Router } from '@angular/router';
 import { ApiService } from '../../services/api-service';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from '../../services/local-storage-service';
+import { User } from '../../models/user';
 
 interface TrainingWithQuantity extends Training {
     quantity: number;
@@ -25,7 +26,7 @@ export class TrainingComponent implements OnInit{
     error : any = null;
 
     //var to check if i m admin
-    adminConnected = true;
+    adminConnected = false;
 
     //search tool (not used)
     filteredTrainings : TrainingWithQuantity[] | undefined;
@@ -33,14 +34,21 @@ export class TrainingComponent implements OnInit{
 
     trainings$!: Observable<Training[]>;
 
-    constructor(private apiService : ApiService, private cartService : CartService) { }
+    constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService) { }
     
 
     
 
 
     ngOnInit() {
+        //get trainings
         this.trainings$ = this.apiService.getTrainings();
+
+        //get user
+        const user = this.localStorageService.getUserFromLocalStorage();
+
+        //check if is user admin
+        this.adminConnected = user?.role.includes('ADMIN') ?? false;
     }
 
 
