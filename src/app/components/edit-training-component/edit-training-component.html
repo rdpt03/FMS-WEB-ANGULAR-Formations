@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2>Editar Treinamento</h2>
+  
+  <form>
+    <!-- Nome -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="name" placeholder="Digite o nome do treinamento">
+    </div>
+
+    <!-- Descrição -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea class="form-control" id="description" rows="4" placeholder="Digite a descrição do treinamento"></textarea>
+    </div>
+
+    <!-- Preço -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Preço (€)</label>
+      <input type="number" class="form-control" id="price" min="0" step="0.01" placeholder="Digite o preço do treinamento">
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex justify-content-end">
+      <button type="reset" class="btn btn-secondary me-2">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
