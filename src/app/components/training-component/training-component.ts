@@ -32,13 +32,12 @@ export class TrainingComponent implements OnInit{
     filteredTrainings : TrainingWithQuantity[] | undefined;
     searchText : string = "";
 
+    //trainings list as observable
     trainings$!: Observable<Training[]>;
+
 
     constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService) { }
     
-
-    
-
 
     ngOnInit() {
         //get trainings
@@ -50,7 +49,6 @@ export class TrainingComponent implements OnInit{
         //check if is user admin
         this.adminConnected = user?.role.includes('ADMIN') ?? false;
     }
-
 
 
     onAddToCart(training:TrainingWithQuantity){
