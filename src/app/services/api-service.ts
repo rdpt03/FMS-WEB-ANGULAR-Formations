@@ -10,16 +10,21 @@ import { User } from '../models/user';
 export class ApiService {
     constructor(private http:HttpClient){}
 
-
+    // =============== Trainings ===============    
+    //get trainings list
     getTrainings(){
         return this.http.get<Training[]>(environment.host+"/trainings")
     }
 
 
+    //get a specific training by id
     getTraining(id : number){
         return this.http.get<Training[]>(environment.host+"/trainings/"+id)
     }
 
+
+    // =============== Users ===============
+    //check if the user exists
     checkUser(email: string, password: string) {
         // Return Observable, do NOT subscribe here
         return this.http.get<User[]>(
