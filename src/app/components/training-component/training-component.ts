@@ -20,10 +20,10 @@ interface TrainingWithQuantity extends Training {
     styleUrl: './training-component.css',
 })
 export class TrainingComponent implements OnInit{
+    //user
+    user : User;
     //training list
     listTrainings : TrainingWithQuantity[] | undefined;
-    //possible errors
-    error : any = null;
 
     //var to check if i m admin
     adminConnected = false;
@@ -36,7 +36,9 @@ export class TrainingComponent implements OnInit{
     trainings$!: Observable<Training[]>;
 
 
-    constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService) { }
+    constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService) { 
+        this.user = localStorageService.getUserFromLocalStorage() ?? new User();
+    }
     
 
     ngOnInit() {
@@ -58,5 +60,17 @@ export class TrainingComponent implements OnInit{
 
     onSearchTextChange(value: string) {
         console.log("searchText changed to:", value);
+    }
+
+    onDeleteClick(training:Training){
+        //if not admin stop
+        if(!this.user.role.includes('ADMIN')){return;}
+        
+        //delete
+        this.apiService.delTraining(this.user, training);
+
+        //refresh
+        this.trainings$ = this.apiService.getTrainings();
+
     }
 }
