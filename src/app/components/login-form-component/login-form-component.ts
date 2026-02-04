@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api-service';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage-service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginFormComponent implements OnInit {
     //regex email 
     emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    constructor(private apiService : ApiService, private router : Router) { }
+    constructor(private apiService : ApiService, public router : Router, private localStorageService : LocalStorageService) { }
     
     
 
@@ -53,8 +54,11 @@ export class LoginFormComponent implements OnInit {
 
                     //check if user is available or not
                     if(res.length > 0){
-                        localStorage.setItem("login",btoa(unescape(encodeURIComponent(JSON.stringify(res[0])))));
-                        this.router.navigate(['/trainings'])
+                        //add to the localStorage
+                        console.log("aaaaaaaaaaaaaaaaa");
+                        console.log("fuck",this.router);
+                        this.localStorageService.setUserOnLocalStorage(res[0]);
+                        this.router.navigate(['/trainings']);
                     }
                     else {
                         alert("Le compte n'existe pas");   
