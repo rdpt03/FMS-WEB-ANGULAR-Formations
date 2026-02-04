@@ -3,16 +3,6 @@
 
         <h3 class="text-center mb-4">Login</h3>
 
-        <!-- Error zone -->
-        <div *ngIf="loginError" class="alert alert-danger">
-            {{ loginErrorMessage }}
-        </div>
-        <div *ngIf="errorMessage.length > 0" class="mb-3">
-            <div *ngFor="let err of errorMessage" class="alert alert-danger py-2">
-                {{ err.message }}
-            </div>
-        </div>
-
         <!-- Email -->
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
