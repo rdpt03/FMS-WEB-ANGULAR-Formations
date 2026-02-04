@@ -31,9 +31,13 @@ export class App {
                 this.showLayout = !currentRoute?.snapshot.data?.['noLayout'];
         });
 
-        //get login status
-        if(!this.localStorageService.getUserFromLocalStorage()){
-            this.router.navigate(['/login'])
+        // if this a browser and not connected
+        if(this.isBrowser() && !this.localStorageService.getUserFromLocalStorage()){
+            this.router.navigate(['/login']);
         }
+    }
+
+    private isBrowser(): boolean {
+        return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
     } 
 }
