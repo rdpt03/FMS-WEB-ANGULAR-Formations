@@ -9,4 +9,9 @@ export class User {
         this.role = role
         
     }
+
+    isAdmin() {
+        return this.role.some(r => r.toUpperCase().includes('ADMIN'));
+    }
+
 }
