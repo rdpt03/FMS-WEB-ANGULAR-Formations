@@ -24,7 +24,7 @@ export class ApiService {
 
     delTraining(currentUser: User, training : Training): boolean | void {
         // verifica se o usuário é admin
-        if (!currentUser.role.includes("ADMIN")) {
+        if (!currentUser.isAdmin()) {
             alert("Vous n'avez pas l'acces à cette fonctionnalité");
             return;
         }
