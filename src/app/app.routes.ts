@@ -6,6 +6,7 @@ import { RegisterFormComonent } from './components/register-form-component/regis
 import { PageNotFound } from './components/page-not-found/page-not-found';
 import { CartComponent } from './components/cart-component/cart-component';
 import { LoginFormComponent } from './components/login-form-component/login-form-component';
+import { EditTrainingComponent } from './components/edit-training-component/edit-training-component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,14 @@ export const routes: Routes = [
         path: 'login',
         component: LoginFormComponent,
         data: { noLayout: true }  
+    },
+    {
+        path: 'training/create',
+        component: EditTrainingComponent
+    },
+    {
+        path: 'training/edit/:id',
+        component: EditTrainingComponent
     },
     {
         path: '**',
