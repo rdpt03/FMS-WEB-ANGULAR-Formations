@@ -19,7 +19,7 @@ export class ApiService {
 
     //get a specific training by id
     getTraining(id : number){
-        return this.http.get<Training[]>(environment.host+"/trainings?id="+id)
+        return this.http.get<Training>(environment.host+"/trainings/"+id)
     }
 
     delTraining(currentUser: User, training : Training): boolean | void {
@@ -46,6 +46,17 @@ export class ApiService {
         alert("Formation suprimmé avec succès!");  
     }
 
+
+    createTraining(training: Training) {
+        return this.http.post<Training>(environment.host + "/trainings", training);
+    }
+
+    editTraining(training : Training){
+        return this.http.patch<Training>(environment.host + "/trainings/"+training.id, training)
+    }
+
+
+    
     // =============== Users ===============
     //check if the user exists
     checkUser(email: string, password: string) {
