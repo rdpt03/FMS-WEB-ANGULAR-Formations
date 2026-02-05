@@ -7,6 +7,7 @@ import { ApiService } from '../../services/api-service';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 interface TrainingWithQuantity extends Training {
     quantity: number;
@@ -36,7 +37,7 @@ export class TrainingComponent implements OnInit{
     trainings$!: Observable<Training[]>;
 
 
-    constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService) { 
+    constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService, private router : Router) { 
         this.user = localStorageService.getUserFromLocalStorage() ?? new User();
     }
     
@@ -49,7 +50,7 @@ export class TrainingComponent implements OnInit{
         const user = this.localStorageService.getUserFromLocalStorage();
 
         //check if is user admin
-        this.adminConnected = user?.role.includes('ADMIN') ?? false;
+        this.adminConnected = user?.isAdmin() ?? false;
     }
 
 
@@ -62,9 +63,22 @@ export class TrainingComponent implements OnInit{
         console.log("searchText changed to:", value);
     }
 
+    onCreateClick(){
+        if(this.user.isAdmin()){
+            this.router.navigate(['/training/create']);
+        }
+    }
+    
+    onEditClick(training : Training){
+        if(this.user.isAdmin()){
+            this.router.navigate(['/training/edit/'+training.id]);
+        }
+    }
+    
+
     onDeleteClick(training:Training){
         //if not admin stop
-        if(!this.user.role.includes('ADMIN')){return;}
+        if(!this.user.isAdmin()){return;}
         
         //delete
         this.apiService.delTraining(this.user, training);
