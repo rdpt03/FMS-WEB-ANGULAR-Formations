@@ -1,29 +1,69 @@
 <div class="container mt-5">
-  <h2>Editar Treinamento</h2>
-  
-  <form>
-    <!-- Nome -->
-    <div class="mb-3">
-      <label for="name" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="name" placeholder="Digite o nome do treinamento">
-    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0" *ngIf="editingTraining">Modifier formation</h4>
+                    <h4 class="mb-0" *ngIf="!editingTraining">Créer une formation</h4>
+                </div>
 
-    <!-- Descrição -->
-    <div class="mb-3">
-      <label for="description" class="form-label">Descrição</label>
-      <textarea class="form-control" id="description" rows="4" placeholder="Digite a descrição do treinamento"></textarea>
-    </div>
+                <div class="card-body">
+                    <form>
 
-    <!-- Preço -->
-    <div class="mb-3">
-      <label for="price" class="form-label">Preço (€)</label>
-      <input type="number" class="form-control" id="price" min="0" step="0.01" placeholder="Digite o preço do treinamento">
-    </div>
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nom de la formation</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="name" 
+                                placeholder="Inserer le nom de la formation"
+                                name="name"
+                                [(ngModel)]="name"
+                                >
+                        </div>
 
-    <!-- Botões -->
-    <div class="d-flex justify-content-end">
-      <button type="reset" class="btn btn-secondary me-2">Cancelar</button>
-      <button type="submit" class="btn btn-primary">Salvar</button>
+                            <!-- Description -->
+                        <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                            <textarea 
+                                class="form-control" 
+                                id="description" 
+                                rows="4" 
+                                placeholder="Inserer description de la formation"
+                                name="description"
+                                [(ngModel)]="description"></textarea>
+                        </div>
+
+                            <!-- Price -->
+                        <div class="mb-4">
+                        <label for="price" class="form-label">Prix (€)</label>
+                            <input 
+                                type="number" 
+                                class="form-control" 
+                                id="price" 
+                                min="0" 
+                                step="0.01" 
+                                placeholder="Inserer prix"
+                                name="price"
+                                [(ngModel)]="price">
+                        </div>
+
+                            <!-- Buttons -->
+                        <div class="d-flex justify-content-end">
+                            <button type="reset" (click)="onCancelClick();" class="btn btn-outline-secondary me-2">
+                                Annuler
+                            </button>
+                            <button *ngIf="editingTraining" (click)="onModifyClick();" type="submit" class="btn btn-primary px-4">
+                                Modifier
+                            </button>
+                            <button *ngIf="!editingTraining" (click)="onCreateClick();" type="button" class="btn btn-primary px-4">
+                                Créer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
 </div>
