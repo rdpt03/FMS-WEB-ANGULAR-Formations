@@ -30,7 +30,9 @@ export class LocalStorageService {
      * @returns User object or null if not found
      */
     getUserFromLocalStorage(): User | null {
-        return this.getFromLocalStorage<User>(this.USER_STORAGE_KEY);
+        const data = this.getFromLocalStorage<User>(this.USER_STORAGE_KEY);
+        if (!data) return null;
+        return Object.assign(new User(), data); // transforma JSON em User real
     }
 
     /**
