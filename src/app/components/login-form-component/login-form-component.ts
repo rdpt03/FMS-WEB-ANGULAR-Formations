@@ -56,7 +56,7 @@ export class LoginFormComponent implements OnInit {
                     if(res.length > 0){
                         //add to the localStorage
                         this.localStorageService.setUserOnLocalStorage(res[0]);
-                        this.router.navigate(['/trainings'])
+                        this.router.navigate(['/trainings']);
                     }
                     else {
                         alert("Le compte n'existe pas");   
