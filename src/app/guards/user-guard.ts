@@ -4,6 +4,12 @@ import { LocalStorageService } from '../services/local-storage-service';
 import { User } from '../models/user';
 
 export const userGuard: CanActivateFn = (route, state) => {
+    //if not a browser, not a block
+    if (typeof window === 'undefined') {
+        return true;
+    }
+    
+    
     //inject local storage
     const localStorageService : LocalStorageService = inject(LocalStorageService);
     const router = inject(Router); //inject router
@@ -17,6 +23,7 @@ export const userGuard: CanActivateFn = (route, state) => {
     }
     else{
         //redirect to login page
+        console.log("dog guard got triggered");
         return router.parseUrl("/login")
     }
 };
