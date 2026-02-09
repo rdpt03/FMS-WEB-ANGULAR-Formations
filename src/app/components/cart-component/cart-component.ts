@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart-service';
 import { Router } from '@angular/router';
+import { Training } from '../../models/training';
+import { TrainingOnList } from '../../models/trainingOnCart';
 
 
 @Component({
@@ -25,5 +27,15 @@ export class CartComponent implements OnInit{
         console.log('bruh');
         //this.cartService.addCart(cart);
         //this.router.navigateByUrl('/cart');
+    }
+
+    goToTrainings() {
+        this.router.navigate(['/trainings']);
+    }
+
+    removeFromCart(tOnList : TrainingOnList){
+        console.log("soon"+tOnList.training.name);
+        //remove
+        this.cartService.removeTraining(tOnList.training);
     }
 }
