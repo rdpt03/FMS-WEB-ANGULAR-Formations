@@ -37,4 +37,11 @@ export class App {
             this.router.navigate(['/login']);
         }
     }
+
+    
+    //handle logout
+    onLogoutClick(){
+        this.localStorageService.logout();
+        this.router.navigate(['/login']);
+    }
 }
