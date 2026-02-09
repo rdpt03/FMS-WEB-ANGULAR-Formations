@@ -36,14 +36,14 @@
                         >
                         </td>
 
-                        <!-- DELETE / PLACEHOLDER -->
+                        <!-- DELETE -->
                         <td class="text-center">
-                            <!-- Placeholder -->
-                            <div 
-                                class="bg-danger rounded"
-                                style="width:32px; height:32px; margin:auto;"
-                                title="Supprimer (placeholder)">
-                            </div>
+                            <button 
+                                class="btn btn-sm"
+                                (click)="removeFromCart(trainingOnCard)"
+                                title="Supprimer">
+                                <i class="iconoir-trash-solid" style="font-size: 20px; color:red;"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
