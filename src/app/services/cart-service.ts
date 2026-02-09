@@ -58,13 +58,16 @@ export class CartService {
 
 
         //transform into id
-        if(training instanceof Training){
+        //if number given so get directly
+        if (typeof training === 'number') {
+            trainingId = training;
+        
+        //if object get the id from it
+        } else if ('id' in training) {
             trainingId = training.id;
-        }
-        else if(training instanceof Number ||  typeof training === 'number'){
-            trainingId = (+training);
-        }
-        else{
+
+        //else throw error
+        } else {
             throw new Error('Invalid type for training');
         }
 
