@@ -10,6 +10,11 @@ import { User } from '../models/user';
 export class ApiService {
     constructor(private http:HttpClient){}
 
+    // =============== Users ===============    
+    //get trainings list
+    getUsers(){
+        return this.http.get<User[]>(environment.host+"/users")
+    }
     // =============== Trainings ===============    
     //get trainings list
     getTrainings(){
