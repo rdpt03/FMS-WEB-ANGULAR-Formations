@@ -1,65 +1,94 @@
-<!-- Image and text -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css" />
+
+
 <div class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark"  *ngIf="showLayout">
-        <div class="container-fluid">
-            <!-- Brand / Logo -->
-            <a class="navbar-brand" href="#">TRAININGS</a>
 
-            <!-- Links à esquerda -->
-            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                <li class="nav-item">
-                    <a routerLink="/trainings" class="nav-link">Formation</a>
-                </li>
-            </ul>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" *ngIf="showLayout">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold fs-4 text-light" href="#">TRAININGS</a>
 
-            <!-- Shopping cart à direita -->
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a routerLink="/cart" class="nav-link position-relative">
-                    
-                        <!-- cart icon -->
-                        <svg width="20px" height="20px" stroke-width="1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff">
-                            <path d="M19.5 22C20.3284 22 21 21.3284 21 20.5C21 19.6716 20.3284 19 19.5 19C18.6716 19 18 19.6716 18 20.5C18 21.3284 18.6716 22 19.5 22Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M9.5 22C10.3284 22 11 21.3284 11 20.5C11 19.6716 10.3284 19 9.5 19C8.67157 19 8 19.6716 8 20.5C8 21.3284 8.67157 22 9.5 22Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M5 4H22L20 15H7L5 4ZM5 4C4.83333 3.33333 4 2 2 2" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M20 15H7H5.23077C3.44646 15 2.5 15.7812 2.5 17C2.5 18.2188 3.44646 19 5.23077 19H19.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        
-                        <!-- Optional: badge with number of items -->
-                        <span 
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                            style="font-size: 0.65rem; padding: 0.25em 0.4em;"
-                            *ngIf="cartService.getCart().length > 0">
-                            {{ cartService.getCart().length }}
-                            <span class="visually-hidden">items in cart</span>
-                        </span>    
-                    </a>
-                    <a class="nav-link position-relative" (click)="onLogoutClick()">
-                        <svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </a>
-                </li>
-            </ul>
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a routerLink="/trainings" class="nav-link text-light fw-semibold">Formations</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/about" class="nav-link text-light fw-semibold">About</a>
+          </li>
+        </ul>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto align-items-center">
+          <!-- Cart -->
+          <li class="nav-item me-3 position-relative">
+            <a routerLink="/cart" class="nav-link p-0 text-light position-relative">
+              <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg" color="#ffffff">
+                <path d="M19.5 22C20.3284 22 21 21.3284 21 20.5C21 19.6716 20.3284 19 19.5 19C18.6716 19 18 19.6716 18 20.5C18 21.3284 18.6716 22 19.5 22Z"
+                  fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.5 22C10.3284 22 11 21.3284 11 20.5C11 19.6716 10.3284 19 9.5 19C8.67157 19 8 19.6716 8 20.5C8 21.3284 8.67157 22 9.5 22Z"
+                  fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M5 4H22L20 15H7L5 4Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path d="M20 15H7H5.23077C3.44646 15 2.5 15.7812 2.5 17C2.5 18.2188 3.44646 19 5.23077 19H19.5"
+                  stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+              <!-- Badge -->
+              <span *ngIf="cartService.getCart().length > 0"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ cartService.getCart().length }}
+                <span class="visually-hidden">items in cart</span>
+              </span>
+            </a>
+          </li>
+
+          <!-- Logout -->
+          <li class="nav-item">
+            <a class="nav-link p-0 text-light position-relative" (click)="onLogoutClick()" title="Logout">
+              <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18"
+                  stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <router-outlet></router-outlet>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light mt-auto py-4 shadow-lg" *ngIf="showLayout">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+          <span class="fw-bold fs-5">TRAININGS</span>
+          <span class="ms-2">© 2026</span>
         </div>
-    </nav>
-
-    <router-outlet></router-outlet>
-    
-    <footer class="bg-dark text-white mt-auto" *ngIf="showLayout">
-        <div class="container py-3">
-            <div class="row align-items-center">
-
-                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    <span class="fw-semibold">TRAININGS</span>
-                    <span class="ms-2">© 2026</span>
-                </div>
-
-                <div class="col-md-6 text-center text-md-end">
-                    <small>
-                        Built with Angular & Bootstrap
-                    </small>
-                </div>
-            </div>
+        <div class="col-md-6 text-center text-md-end">
+          <small>
+            Built with <span class="text-warning">Angular</span> & <span class="text-info">Bootstrap</span>
+          </small>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 
 </div>
