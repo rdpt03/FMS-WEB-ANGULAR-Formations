@@ -4,6 +4,7 @@ import { CartService } from './services/cart-service';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { LocalStorageService } from './services/local-storage-service';
+import { Helper } from './services/helper';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +13,7 @@ import { LocalStorageService } from './services/local-storage-service';
     styleUrls: ['./app.css']
 })
 export class App {
-    constructor(public cartService : CartService, private router: Router, private route: ActivatedRoute, private localStorageService : LocalStorageService){}
+    constructor(private helper : Helper, public cartService : CartService, private router: Router, private route: ActivatedRoute, private localStorageService : LocalStorageService){}
     protected readonly title = signal('trainings-front-app');
  
     showLayout = true;
@@ -32,13 +33,8 @@ export class App {
         });
 
         // if this a browser and not connected
-        if(this.isBrowser() && !this.localStorageService.getUserFromLocalStorage()){
+        if(this.helper.isBrowser() && !this.localStorageService.getUserFromLocalStorage()){
             this.router.navigate(['/login']);
         }
     }
-
-    
-    private isBrowser(): boolean {
-        return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
-    } 
 }
