@@ -16,6 +16,15 @@ export class LocalStorageService {
      */
 
     /**
+     * Logout.
+     *
+     * @param user - User object to be saved
+     */
+    logout(): void {
+        localStorage.removeItem(this.USER_STORAGE_KEY);
+    }
+
+    /**
      * Stores the logged-in user in Local Storage.
      *
      * @param user - User object to be saved
