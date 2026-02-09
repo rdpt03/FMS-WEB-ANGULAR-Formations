@@ -7,15 +7,19 @@ import { PageNotFound } from './components/page-not-found/page-not-found';
 import { CartComponent } from './components/cart-component/cart-component';
 import { LoginFormComponent } from './components/login-form-component/login-form-component';
 import { EditTrainingComponent } from './components/edit-training-component/edit-training-component';
+import { adminGuard } from './guards/admin-guard';
+import { userGuard } from './guards/user-guard';
 
 export const routes: Routes = [
     {
         path: '',
-        component: Home
+        component: Home,
+        canActivate: [userGuard]
     },
     {
         path: 'trainings',
-        component: TrainingComponent
+        component: TrainingComponent,
+        canActivate: [userGuard]
     },
     {
         path: 'register',
@@ -23,7 +27,8 @@ export const routes: Routes = [
     },
     {
         path: 'cart', 
-        component:CartComponent
+        component:CartComponent,
+        canActivate: [userGuard]
     },
     {
         path: 'login',
@@ -32,11 +37,13 @@ export const routes: Routes = [
     },
     {
         path: 'training/create',
-        component: EditTrainingComponent
+        component: EditTrainingComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'training/edit/:id',
-        component: EditTrainingComponent
+        component: EditTrainingComponent,
+        canActivate: [adminGuard]
     },
     {
         path: '**',
