@@ -32,10 +32,13 @@ export class App {
                 this.showLayout = !currentRoute?.snapshot.data?.['noLayout'];
         });
 
+        /*
         // if this a browser and not connected
         if(this.helper.isBrowser() && !this.localStorageService.getUserFromLocalStorage()){
+            console.log("i got triggered old tech");
             this.router.navigate(['/login']);
         }
+        */
     }
 
     
