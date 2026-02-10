@@ -4,7 +4,7 @@ import { Training } from '../../models/training';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart-service';
 import { ApiService } from '../../services/api-service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
@@ -36,22 +36,24 @@ export class TrainingComponent implements OnInit{
     //trainings list as observable
     trainings$!: Observable<Training[]>;
 
+    searchText$ = new BehaviorSubject<string>('');
 
+    
     constructor(private apiService : ApiService, private cartService : CartService, private localStorageService : LocalStorageService, private router : Router) { 
         this.user = localStorageService.getUserFromLocalStorage() ?? new User();
     }
     
 
     ngOnInit() {
-        //get trainings
-        this.trainings$ = this.apiService.getTrainings();
-
-        //get user
-        const user = this.localStorageService.getUserFromLocalStorage();
-
-        //check if is user admin
-        this.adminConnected = user?.isAdmin() ?? false;
-    }
+    this.trainings$ = combineLatest([
+        this.apiService.getTrainings().pipe(
+            map(trainings => trainings.map(t => ({ ...t, quantity: 1 })))
+        ),
+        this.searchText$
+    ]).pipe(
+        map(([trainings, search]) => trainings.filter(t => t.name.toLowerCase().includes(search.toLowerCase())))
+    );
+}
 
 
     onAddToCart(training:TrainingWithQuantity){
@@ -60,7 +62,7 @@ export class TrainingComponent implements OnInit{
 
 
     onSearchTextChange(value: string) {
-        console.log("searchText changed to:", value);
+        this.searchText$.next(value);
     }
 
     onCreateClick(){
