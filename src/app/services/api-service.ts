@@ -20,6 +20,10 @@ export class ApiService {
     getTrainings(){
         return this.http.get<Training[]>(environment.host+"/trainings")
     }
+    
+    getTrainingsByKeyword(keyword : string){
+        return this.http.get<Training[]>(environment.host+"/trainings?q="+keyword)
+    }
 
 
     //get a specific training by id
